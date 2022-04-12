@@ -1,0 +1,7 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!--thymeleaf의 장점: html 그대로 쓰고 파일을 서버 구동 없이 그냥 페이지 소스 보기를 해도 잘 뜬다 -->
+<!--서버 구동 없이 파일 자체를 볼 때는 hello! empty가, 서버가 돌 때는 hello + name 치환되어서 들어감 -->
+<p th:text="'hello ' + ${name}">hello! empty</p>
+</body>
+</html>

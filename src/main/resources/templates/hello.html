@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<!-- 템플릿 엔진 선언으로서 타임리프 문법 쓸 수 있다-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--http://localhost:8080/hello 접속시 이 화면-->
+
+<head>
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!-- th : thymeleaf 엔진 -->
+<!-- addAttribute의 key로 넣었던 data. value가 치환될 것. -->
+<p th:text="'안녕하세요. ' + ${data}" >안녕하세요. 손님</p>
+</body>
+</html>
