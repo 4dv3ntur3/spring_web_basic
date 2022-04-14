@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- 템플릿 언어가 렌더링한 것 -->
+            <!-- 모델 안에 있는 값 꺼내려고 ${} -->
+            <!-- 타임리프 문법임. th:each = loop 돈다 -->
+            <!-- 메모리에 있기 때문에 서버를 내렸다가 다시 켜게 되면 다 사라짐 -->
+            <tr th:each="member : ${members}">
+                <td th:text="${member.id}"></td>
+                <td th:text="${member.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>

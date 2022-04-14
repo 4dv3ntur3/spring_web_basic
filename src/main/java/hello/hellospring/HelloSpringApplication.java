@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+// 이걸 실행시키면 하위 패키지를 다 찾아서 자동으로 등록해줌
+// 아니면 등록이 안 됨.. .방법이 있긴 한데 (컴포넌트 스캔 대상이 아님)
 public class HelloSpringApplication {
 
 	// 메인 메서드

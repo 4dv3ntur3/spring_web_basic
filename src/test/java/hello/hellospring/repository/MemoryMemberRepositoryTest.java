@@ -86,7 +86,7 @@ class MemoryMemberRepositoryTest {
         repository.save(member2);
 
         // optional에서 까서 꺼내기
-        Member result = repository.findByNmae("spring2").get();
+        Member result = repository.findByName("spring2").get();
         Assertions.assertThat(result).isEqualTo(member1);
 
 

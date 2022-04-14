@@ -2,14 +2,19 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
 // 클래스 이름 더블클릭 -> 드래그 됨
 // ctrl shift t -> create test
+
+// JPA 쓰려면 항상 서비스 객체 위에 이게 있어야 함
+// 데이터 저장이나 변경할 때는 필요함
+// 그래서 여기다 해도 되고 회원가입 할 때만 필요하니까 그 메서드 위에 붙여도 됨
+@Transactional
 public class MemberService {
 
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -17,9 +22,19 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     // 외부에서 넣어 주도록 변경
+    @Autowired
+    // 생성자 주입
+    // 구현체로 있는 MemoryMemberRepository 서비스에 주입
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
+
+    /*
+
+    public static void main(String[] args) {
+        MemberService ms = new MemberSerivce(); // 이렇게 하면 얘도 autowired 작동 안 함
+        // 스프링 컨테이너에 올라가는 것만 작동
+    }     */
 
     // /** 만 치면 알아서 양식 생김
 
@@ -49,13 +64,29 @@ public class MemberService {
 //                    throw new IllegalStateException("이미 존재하는 회원입니다.");
 //                });
 
+        // AOP
+        // 시간 찍기
+//        long start = System.currentTimeMillis();
+//
+//        try {
+//            validateDuplicateMember(member); // 중복 회원 검증
+//            memberRepository.save(member); // 저장
+//            return member.getId();
+//
+//        } finally {
+//            // 에러가 나든 안나든 찍어야 함
+//            long finish = System.currentTimeMillis();
+//            long timeMs = finish - start;
+//            System.out.println("join = " + timeMs + "ms");
+//        }
+
         validateDuplicateMember(member); // 중복 회원 검증
         memberRepository.save(member); // 저장
         return member.getId();
     }
 
     private void validateDuplicateMember(Member member) {
-        memberRepository.findByNmae(member.getName())
+        memberRepository.findByName(member.getName())
                 .ifPresent(m -> {
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                     // exception 터지나 확인하는 것?

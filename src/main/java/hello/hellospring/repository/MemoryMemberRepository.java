@@ -1,8 +1,11 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
+
+//Repository 인터페이스의 구현체
 
 public class MemoryMemberRepository implements MemberRepository {
 
@@ -29,7 +32,7 @@ public class MemoryMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findByNmae(String name) {
+    public Optional<Member> findByName(String name) {
         // 람다식
         // 찾으면 반환
         // 결과 optinal로 반환됨
